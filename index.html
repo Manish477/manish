@@ -35,7 +35,7 @@
 <p><span style="color: #000000;"><br />int EDITDISTANCE(int m, n)<br />for i = 0 to m do E[i, 0] = i endfor;<br />for j = 1 to n do E[0, j] = j endfor;<br />for i = 1 to m do<br />for j = 1 to n do<br />E[i, j] = min{E[i, j &minus; 1] + 1, E[i &minus; 1, j] + 1,<br />E[i &minus; 1, j &minus; 1] + |A[i] 6= B[j]|}<br />endfor<br />endfor;<br />return E[m, n].</span></p>
 <p><span style="color: #000000;"><br />Since there are (m+1)(n+1) entries in the table and each<br />takes a constant time to compute, the total running time is<br />in O(mn).</span></p>
 <p><span style="color: #000000;"><em><strong>ALGORITHM and of ALTRUISTIC.</strong> </em>The shaded area highlights the<br />optimal edit sequences, which are paths from the upper left to<br />the lower right corner.<br />A L G O R I T H M<br />A L T R U I S T I C<br />A L G O R I T H M<br />A L T R U I S T I C<br />They are easily recovered by tracing the paths backward,<br />from the end to the beginning. The following algorithm<br />recovers an optimal solution that also minimizes the number of insertions and deletions. We call it with the lengths<br />of the strings as arguments, R(m, n).<br />void R(int i, j)<br />if i &gt; 0 or j &gt; 0 then<br />switch incoming arrow:<br />case ց: R(i &minus; 1, j &minus; 1); print(A[i], B[j])<br />case &darr;: R(i &minus; 1, j); print(A[i], )<br />case &rarr;: R(i, j &minus; 1); print( , B[j]).<br />endswitch<br />endif.</span></p>
-<p><span style="text-decoration: underline; color: #ff6600;"><em><strong><span>3.GREEDY ALGORITHM</span></strong></em></span></p>
+<p><span style="text-decoration: underline; color: #ff6600;"><em><strong>3.GREEDY ALGORITHM</strong></em></span></p>
 <p>&nbsp;</p>
 <p>A&nbsp;<strong>greedy algorithm</strong>&nbsp;is a simple, intuitive algorithm that is used in optimization problems. The algorithm makes the optimal choice at each step as it attempts to find the overall optimal way to solve the entire problem. Greedy algorithms are quite successful in some problems, such as&nbsp;<a class="wiki_link" title="Huffman encoding" href="https://brilliant.org/wiki/huffman-encoding/" target="_blank" rel="noopener">Huffman encoding</a>&nbsp;which is used to compress data, or&nbsp;<a class="wiki_link" title="Dijkstra's algorithm" href="https://brilliant.org/wiki/dijkstras-short-path-finder/" target="_blank" rel="noopener">Dijkstra's algorithm</a>, which is used to find the shortest path through a graph.</p>
 <p>However, in many problems, a greedy strategy does not produce an optimal solution. For example, in the animation below, the greedy algorithm seeks to find the path with the largest sum. It does this by selecting the largest available number at each step. The greedy algorithm fails to find the largest sum, however, because it makes decisions based only on the information it has at any one step, without regard to the overall problem.</p>
@@ -58,6 +58,195 @@
 <p><a href="https://brilliant.org/wiki/huffman-encoding/" target="_blank" rel="nofollow noopener">Huffman encoding</a>&nbsp;is another example of an algorithm where a greedy approach is successful. The Huffman algorithm analyzes a message and depending on the frequencies of the characters used in the message, it assigns a variable-length encoding for each symbol. A more commonly used symbol will have a shorter encoding while a rare symbol will have a longer encoding.</p>
 <p>The Huffman coding algorithm takes in information about the frequencies or probabilities of a particular symbol occurring. It begins to build the prefix tree from the bottom up, starting with the two least probable symbols in the list. It takes those symbols and forms a subtree containing them, and then removes the individual symbols from the list. The algorithm sums the probabilities of elements in a subtree and adds the subtree and its probability to the list. Next, the algorithm searches the list and selects the two symbols or subtrees with the smallest probabilities. It uses those to make a new subtree, removes the original subtrees/symbols from the list, and then adds the new subtree and its combined probability to the list. This repeats until there is one tree and all elements have been added. At each subtree, the optimal encoding for each symbol is created and together composes the overall optimal encoding.</p>
 <p>&nbsp;</p>
+<h2><span style="background-color: #ffff00;">&nbsp;II Searching :</span></h2>
+<h3><span style="background-color: #ffff00;">4 Binary Search Trees<br />5 Red-black Trees<br />6. Splay Trees</span></h3>
+<p><span style="text-decoration: underline; color: #ff6600;"><em><strong><span style="background-color: #ffffff;">4. BINARY SEARCH TREE:</span></strong></em></span></p>
+<p>For a binary tree to be a binary search tree, the data of all the nodes in the left sub-tree of the root node should be&nbsp;<span id="MathJax-Element-1-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo&gt;&amp;#x2264;&lt;/mo&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">&le;</span></span>&nbsp;the data of the root. The data of all the nodes in the right subtree of the root node should be&nbsp;<span id="MathJax-Element-2-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo&gt;&amp;#x003E;&lt;/mo&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">&gt;</span></span>&nbsp;the data of the root.</p>
+<p><strong>Example</strong></p>
+<p><img src="https://he-s3.s3.amazonaws.com/media/uploads/fe0eac0.png" alt="enter image description here" width="312" height="234" /></p>
+<p>In Fig. 1, consider the root node with data = 10.</p>
+<ul>
+<li>Data in the left subtree is:&nbsp;<span id="MathJax-Element-3-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mn&gt;6&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">[5,1,6]</span></span></li>
+<li>All data elements are&nbsp;<span id="MathJax-Element-4-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo&gt;&amp;#x003C;&lt;/mo&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">&lt;</span></span>&nbsp;<span id="MathJax-Element-5-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">10</span></span></li>
+<li>Data in the right subtree is:&nbsp;<span id="MathJax-Element-6-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo stretchy=&quot;false&quot;&gt;[&lt;/mo&gt;&lt;mn&gt;19&lt;/mn&gt;&lt;mo&gt;,&lt;/mo&gt;&lt;mn&gt;17&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;]&lt;/mo&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">[19,17]</span></span></li>
+<li>All data elements are&nbsp;<span id="MathJax-Element-7-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mo&gt;&amp;#x003E;&lt;/mo&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">&gt;</span></span>&nbsp;<span id="MathJax-Element-8-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;10&lt;/mn&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">10</span></span></li>
+</ul>
+<p>Also, considering the root node with&nbsp;<span id="MathJax-Element-9-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">data=5</span></span>, its children also satisfy the specified ordering. Similarly, the root node with&nbsp;<span id="MathJax-Element-10-Frame" class="MathJax_SVG" style="display: inline-block; font-style: normal; font-weight: normal; line-height: normal; font-size: 14px; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; position: relative;" tabindex="0" role="presentation" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mn&gt;19&lt;/mn&gt;&lt;/math&gt;"><span class="MJX_Assistive_MathML" role="presentation">data=19</span></span>&nbsp;also satisfies this ordering. When recursive, all subtrees satisfy the left and right subtree ordering.</p>
+<p>The tree is known as a Binary Search Tree or BST.</p>
+<p><strong>Traversing the tree</strong></p>
+<p>There are mainly&nbsp;<em>three</em>&nbsp;types of tree traversals.</p>
+<p><strong><em>Pre-order traversal</em></strong></p>
+<p>In this traversal technique the traversal order is root-left-right i.e.</p>
+<ul>
+<li>Process data of root node</li>
+<li>First, traverse left subtree completely</li>
+<li>Then, traverse right subtree</li>
+</ul>
+<pre class="prettyprint prettyprinted"><code>    <span class="kwd">void</span><span class="pln"> perorder</span><span class="pun">(</span><span class="kwd">struct</span><span class="pln"> node</span><span class="pun">*</span><span class="pln">root</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kwd">if</span><span class="pun">(</span><span class="pln">root</span><span class="pun">)</span>
+        <span class="pun">{</span><span class="pln">
+            printf</span><span class="pun">(</span><span class="str">"%d "</span><span class="pun">,</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">data</span><span class="pun">);</span>    <span class="com">//Printf root-&gt;data</span><span class="pln">
+            preorder</span><span class="pun">(</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">left</span><span class="pun">);</span>    <span class="com">//Go to left subtree</span><span class="pln">
+            preorder</span><span class="pun">(</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">right</span><span class="pun">);</span>     <span class="com">//Go to right subtree</span>
+        <span class="pun">}</span>
+    <span class="pun">}</span></code></pre>
+<p><strong>Post-order traversal</strong></p>
+<p>In this traversal technique the traversal order is left-right-root.</p>
+<ul>
+<li>Process data of left subtree</li>
+<li>First, traverse right subtree</li>
+<li>Then, traverse root node</li>
+</ul>
+<pre class="prettyprint prettyprinted"><code>    <span class="kwd">void</span><span class="pln"> postorder</span><span class="pun">(</span><span class="kwd">struct</span><span class="pln"> node</span><span class="pun">*</span><span class="pln">root</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kwd">if</span><span class="pun">(</span><span class="pln">root</span><span class="pun">)</span>
+        <span class="pun">{</span><span class="pln">
+            postorder</span><span class="pun">(</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">left</span><span class="pun">);</span>    <span class="com">//Go to left sub tree</span><span class="pln">
+            postorder</span><span class="pun">(</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">right</span><span class="pun">);</span>     <span class="com">//Go to right sub tree</span><span class="pln">
+            printf</span><span class="pun">(</span><span class="str">"%d "</span><span class="pun">,</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">data</span><span class="pun">);</span>    <span class="com">//Printf root-&gt;data</span>
+        <span class="pun">}</span>
+    <span class="pun">}</span></code></pre>
+<p><strong>In-order traversal</strong></p>
+<p>In in-order traversal, do the following:</p>
+<ul>
+<li>First process left subtree (before processing root node)</li>
+<li>Then, process current root node</li>
+<li>Process right subtree</li>
+</ul>
+<h2 class="prettyprint prettyprinted"><code>    <span class="kwd">void</span><span class="pln"> inorder</span><span class="pun">(</span><span class="kwd">struct</span><span class="pln"> node</span><span class="pun">*</span><span class="pln">root</span><span class="pun">)</span>
+    <span class="pun">{</span>
+        <span class="kwd">if</span><span class="pun">(</span><span class="pln">root</span><span class="pun">)</span>
+        <span class="pun">{</span><span class="pln">
+            inorder</span><span class="pun">(</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">left</span><span class="pun">);</span>    <span class="com">//Go to left subtree</span><span class="pln">
+            printf</span><span class="pun">(</span><span class="str">"%d "</span><span class="pun">,</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">data</span><span class="pun">);</span>    <span class="com">//Printf root-&gt;data</span><span class="pln">
+            inorder</span><span class="pun">(</span><span class="pln">root</span><span class="pun">-&gt;</span><span class="pln">right</span><span class="pun">);</span>     <span class="com">//Go to right subtree</span>
+        <span class="pun">}</span>
+    <span class="pun">}<br /><br /><br /><span style="text-decoration: underline;"><span style="color: #ff0000; text-decoration: underline;">5. RED-BLACK TREES</span></span><br /></span></code></h2>
+<h4>Red-black Trees</h4>
+<p>Red-black trees are an evolution of binary search trees that aim to keep the tree balanced without affecting the complexity of the primitive operations. This is done by coloring each node in the tree with either red or black and preserving a set of properties that guarantee that the deepest path in the tree is not longer than twice the shortest one.</p>
+<p>A red-black tree is a binary search tree with the following properties:</p>
+<ol>
+<li>
+<p>Every node is colored with either red or black.</p>
+</li>
+<li>
+<p>All leaf (nil) nodes are colored with black; if a node&rsquo;s child is missing then we will assume that it has a nil child in that place and this nil child is always colored black.</p>
+</li>
+<li>
+<p>Both children of a red node must be black nodes.</p>
+</li>
+<li>
+<p>Every path from a node n to a descendent leaf has the same number of black nodes (not counting node n). We call this number the black height of n, which is denoted by bh(n).</p>
+</li>
+</ol>
+<p>Figure 5 shows an example of a red-black tree.</p>
+<center><br /><img src="http://community.topcoder.com/i/education/rbtrees5.jpg" /></center>
+<p>Using these properties, we can show in two steps that a red-black tree which contains n nodes has a height of O(log n), thus all primitive operations on the tree will be of O(log n) since their order is a function of tree height.</p>
+<ol>
+<li>
+<p>First, notice that for a red-black tree with height h, bh(root) is at least h/2 by property 3 above (as each red node strictly requires black children).</p>
+</li>
+<li>
+<p>The next step is to use the following lemma:</p>
+<ul>
+<li>
+<p>Lemma: A subtree rooted at node v has at least 2^bh(v) &ndash; 1 internal nodes</p>
+</li>
+<li>
+<p>Proof by induction: The basis is when h(v) = 0, which means that v is a leaf node and therefore bh(v) = 0 and the subtree rooted at node v has 2^bh(v)-1 = 2^0-1 = 1-1 = 0 nodes.</p>
+</li>
+<li>
+<p>Inductive hypothesis: if node v1 with height x has 2^bh(v1)-1 internal nodes then node v2 with height x+1 has 2^bh(v2)-1</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>For any non-leaf node v (height &gt; 0) we can see that the black height of any of its two children is at least equal to bh(v)-1 &mdash; if the child is black, that is, otherwise it is equal to bh(v) . By applying the hypothesis above we conclude that each child has at least 2^[bh(v)-1]-1 internal nodes, accordingly node v has at least<br />2^[bh(v)-1]-1 + 2^[bh(v)-1]-1 + 1 = 2^bh(v)-1<br />internal nodes, which ends the proof.</p>
+<p>By applying the lemma to the root node (with bh of at least h/2, as shown above) we get<br />n &gt;= 2^(h/2) &ndash; 1<br />where n is the number of internal nodes of a red-black tree (the subtree rooted at the root). Playing with the equation a little bit we get h &lt;= 2 log (n+1), which guarantees the logarithmic bound of red-black trees.</p>
+<h4>Rotations</h4>
+<p>How does inserting or deleting nodes affect a red-black tree? To ensure that its color scheme and properties don&rsquo;t get thrown off, red-black trees employ a key operation known as rotation. Rotation is a binary operation, between a parent node and one of its children, that swaps nodes and modifys their pointers while preserving the inorder traversal of the tree (so that elements are still sorted).</p>
+<p>There are two types of rotations: left rotation and right rotation. Left rotation swaps the parent node with its right child, while right rotation swaps the parent node with its left child. Here are the steps involved in for left rotation (for right rotations just change &ldquo;left&rdquo; to &ldquo;right&rdquo; below):</p>
+<ul>
+<li>
+<p>Assume node x is the parent and node y is a non-leaf right child.</p>
+</li>
+<li>
+<p>Let y be the parent and x be its left child.</p>
+</li>
+<li>
+<p>Let y&rsquo;s left child be x&rsquo;s right child.</p>
+</li>
+</ul>
+<center><br /><img src="http://community.topcoder.com/i/education/rbtrees6.jpg" /></center>
+<p>Operations on red-black tree (insertion, deletion and retrieval)</p>
+<p>Red-black tree operations are a modified version of BST operations, with the modifications aiming to preserve the properties of red-black trees while keeping the operations complexity a function of tree height.</p>
+<h3>Red-black tree insertion:</h3>
+<p>Inserting a node in a red-black tree is a two step process:</p>
+<ol>
+<li>
+<p>A BST insertion, which takes O(log n) as shown before.</p>
+</li>
+<li>
+<p>Fixing any violations to red-black tree properties that may occur after applying step 1. This step is O(log n) also, as we start by fixing the newly inserted node, continuing up along the path to the root node and fixing nodes along that path. Fixing a node is done in constant time and involves re-coloring some nodes and doing rotations.</p>
+</li>
+</ol>
+<p>Accordingly the total running time of the insertion process is O(log n). Figure 7 shows the red-black tree in figure 5 before and after insertion of a node with value 4. You can see how the swap operations modified the tree structure to keep it balanced.</p>
+<center><br /><img src="http://community.topcoder.com/i/education/rbtrees7.jpg" /></center>
+<h3>Red-black tree deletion:</h3>
+<p>The same concept behind red-black tree insertions applies here. Removing a node from a red-black tree makes use of the BST deletion procedure and then restores the red-black tree properties in O(log n). The total running time for the deletion process takes O(log n) time, then, which meets the complexity requirements for the primitive operations.</p>
+<h3>Red-black tree retrieval:</h3>
+<p>Retrieving a node from a red-black tree doesn&rsquo;t require more than the use of the BST procedure, which takes O(log n) time.</p>
+<h2><span style="color: #ff0000;">6.SPLAY TREES</span></h2>
+<p>Splay trees are self-adjusting binary search trees i.e., they adjust their nodes after accessing them. So, after searching, inserting or deleting a node, the tree will get adjusted.</p>
+<p>Splay trees put the most recently accessed items near the root based on the principle of locality; 90-10 "rule" which states that 10% of the data is accessed 90% of the time, other 90% of data is only accessed only 10% of the time.</p>
+<p><img src="https://www.codesdope.com/staticroot/images/ds/splay1.png" alt="rule for splay tree" width="247" height="209" /></p>
+<p>Thus, there is a 90% chance that the elements near the root of a splay tree are going to be accessed in an operation.</p>
+<p>Let's learn how these trees adjust nodes on accessing them.</p>
+<p>&nbsp;</p>
+<h2>Splaying</h2>
+<hr />
+<p>"Splaying" is a process in which a node is transferred to the root by performing suitable rotations. In a splay tree, whenever we access any node, it is splayed to the root. It will be clear</p>
+<p>with the examples given in this chapter.</p>
+<p>There are few terminologies used in this process. Let's learn about those.</p>
+<h3>Zig-Zig and Zig-Zag</h3>
+<hr />
+<p>When the parent and the grandparent of a node are in the same direction, it is&nbsp;<strong>zig-zig</strong>.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay2.png" alt="zig-zig" width="193" height="215" /></p>
+<p>When the parent and the grandparent of a node are in different directions, it is&nbsp;<strong>zig-zag</strong>.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay3.png" alt="zig-zag" width="208" height="292" /></p>
+<p>Whenever we access a node, we shift it to the root by using suitable rotations. Let's take the following example.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay4.png" alt="splaying to root" width="453" height="212" /></p>
+<p>Here, we have performed a single right rotation and a&nbsp;<strong>single rotation</strong>&nbsp;is termed as "zig".</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay5.png" alt="single rotation in splay" width="278" height="170" /></p>
+<p>"zig-zag" consists of two rotations of the opposite direction. Take a look at the following example.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay6.png" alt="zig-zag in splaying" width="481" height="232" /></p>
+<p>Let's take a look at the following example in which we have accessed the node&nbsp;<em>R</em>.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay7.png" alt="splaying a node" width="563" height="254" /></p>
+<p>So, we have performed two single rotations of the same direction to bring the node at the root. This is "zig-zig".</p>
+<p>Let's take a look at some examples.</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.codesdope.com/staticroot/images/ds/splay8.png" alt="example of splaying" width="550" height="259" /></p>
+<div class="well imp_well">&nbsp;
+<h2>Searching in a Splay Tree</h2>
+<hr />
+<p>Searching is just the same as a normal binary search tree, we just splay the node which was searched to the root</p>
+<pre>SEARCH(T, n, x)
+    if x == n.data
+        SPLAY(T, n)
+        return n
+    else if x &lt; n.data
+        return search(T, n.left, x);
+    else if x &gt; n.data
+        return search(T, n.right, x);
+    else
+        return NULL<br /><br /></pre>
+<h2>Insertion in a Splay Tree</h2>
+<hr />
+<p>We normally insert a node in a splay tree and splay it to the root.</p>
+<p><img style="float: left;" src="https://www.codesdope.com/staticroot/images/ds/splay11.png" alt="insertion in splay tree" width="197" height="316" /></p>
+<p>INSERT(T, n)<br /> temp = T.root<br /> y = NULL<br /> while temp != NULL<br /> y = temp<br /> if n.data &lt; temp.data<br /> temp = temp.left<br /> else<br /> temp = temp.right<br /> n.parent = y<br /> if y==NULL<br /> T.root = n<br /> else if n.data &lt; y.data<br /> y.left = n<br /> else<br /> y.right = n</p>
+<p>SPLAY(T, n)</p>
+</div>
 </div>
 </div>
 </div>
